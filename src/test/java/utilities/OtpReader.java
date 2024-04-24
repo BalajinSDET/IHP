@@ -109,7 +109,7 @@ public class OtpReader {
             result = (String) bodyPart.getContent();
         } else if (bodyPart.isMimeType("text/html")) {
             String html = (String) bodyPart.getContent();
-          //  result = org.jsoup.Jsoup.parse(html).text();
+            //  result = org.jsoup.Jsoup.parse(html).text();
         } else if (bodyPart.getContent() instanceof MimeMultipart) {
             result = getTextFromMimeMultipart((MimeMultipart) bodyPart.getContent());
         }

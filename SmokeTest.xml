@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Smoke Suite ">
+    <listeners>
+        <listener class-name="utilities.ExtentReportManager"/>
+    </listeners>
+
+    <test thread-count="5" name="Smoke Test" parallel="methods">
+        <parameter name="browser" value="chrome"/>
+        <groups>
+            <run>
+                <include name="Smoke"></include>
+            </run>
+        </groups>
+        <classes>
+            <class name="TestCases.TC_001_SignInAs_JobSeeker"/>
+        </classes>
+    </test> <!-- Smoke Test -->
+</suite> <!-- Smoke Suite  -->
