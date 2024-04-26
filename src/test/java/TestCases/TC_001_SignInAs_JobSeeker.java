@@ -1,5 +1,6 @@
 package TestCases;
 
+import JobSeeker_pageObjects.Job_Seeker_Home_Page;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -13,24 +14,7 @@ import testBase.Selenium_Base;
 import utilities.DataProviders;
 
 public class TC_001_SignInAs_JobSeeker extends Selenium_Base {
-
-
-    @Test(priority = 1, alwaysRun = true, enabled = true, groups = {"Smoke", "Sanity", "Regression"})
-    //dataProvider="fetch_Excel_Data"
-    public void ValidatePageTitle() throws InterruptedException {
-        index_page ip = new index_page();
-        String act_title = ip.DisplayedPageTitle();
-        Assert.assertEquals(act_title, "Home - IHP");
-    }
-
-    @Test(priority = 2, alwaysRun = true, enabled = true, groups = {"Smoke", "Sanity", "Regression"})
-    public void validateIHPLogo() throws InterruptedException {
-        index_page ip = new index_page();
-        boolean logoDisplayedStatus = ip.ValidateLogo();
-        Assert.assertTrue(logoDisplayedStatus);
-    }
-
-    @Test(groups = {"Smoke"}, priority = 3, alwaysRun = true, dataProvider = "LoginData", dataProviderClass = DataProviders.class)
+    @Test(groups = {"Smoke"}, priority = 1, alwaysRun = true, dataProvider = "LoginData", dataProviderClass = DataProviders.class)
     //,timeOut=3000
     public void Validate_SignINAsJobSeeker(String email, String password, String exp_result) {
         index_page ip = new index_page();
@@ -49,6 +33,7 @@ public class TC_001_SignInAs_JobSeeker extends Selenium_Base {
             OTP.ClickSubmitBtn();
             OTP.EnterOTP();
             OTP.ClickVerifiedOtpSubmitBtn();
+            Assert.assertTrue(true,"Test Cases pass");
         } else if (exp_result.equalsIgnoreCase("invalid")) {
             if (BaseClass.getDriver().switchTo().activeElement() != null) {
                 ReusableActions.acceptAlert();

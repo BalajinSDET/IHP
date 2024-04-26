@@ -1,30 +1,23 @@
 package JobSeeker_pageObjects;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
-
-import com.aventstack.extentreports.ExtentTest;
 
 import ReusabilityMethod.ReusableActions;
-import testBase.BaseClass;
 import testBase.Selenium_Base;
 
 import java.util.List;
 
-public class index_page extends Selenium_Base {//BasePage
-    /*
-     * public index_page(WebDriver driver) { super(driver); }
-     */
-
-
+public class index_page extends Selenium_Base {
     @FindBy(xpath = "//*[contains(@class, \"marginSearch80 \")]")
     WebElement indexPageTittlelabel;
 
     @FindBy(xpath = "//input[@placeholder=\"Job title, keywords..\"]")
     WebElement indexPageTittle;
+
+    @FindBy(xpath = "//input[@class=' homeSearchBox mobMargBottom form-control']")
+    WebElement globalsearchbar;
 
     @FindBy(xpath = "//div[@class='forSameRow marginSearch80 col-12 col-sm-12 col-md-12 col-lg-12']//form//*[name()='svg']")
     WebElement searchIcorn;
@@ -99,25 +92,30 @@ public class index_page extends Selenium_Base {//BasePage
 
     public String DisplayedPageTitle() {
         String act_pagetitle = getDriver().getTitle();
-        //System.out.println("Index Page Title displayed is : " +getDriver().getTitle());
-        //Assert.assertEquals(driver.getTitle(),"Home - IHP");
         return act_pagetitle;
     }
 
     public boolean ValidateLogo() {
-        ihplogo.isDisplayed();
         ReusableActions.HighlightingElement(ihplogo);
-        //System.out.println("Logo displayed status is : " + ihplogo.isDisplayed());
+        ihplogo.isDisplayed();
         return true;
-        //BaseClass.HighlightingElement(ihplogo);
-        //Assert.assertTrue(ihplogo.isDisplayed());
     }
 
     public void ClickLoginAsJobSeeker() {
-        //BaseClass.HighlightingElement(loginAsJobseeker);
         ReusableActions.click(loginAsJobseeker);
-        //loginAsJobseeker.click();
     }
 
+    public void EnterGlobalSearch() {
+        ReusableActions.clickAndType(globalsearchbar, "React Developer");
+    }
 
+    public void ClickGlobalSearchButton() {
+        ReusableActions.click(searchbutton);
+
+    }
+
+    public String GlobalSearchResultPage() {
+        String act_page = getDriver().getTitle();
+        return act_page;
+    }
 }

@@ -39,10 +39,9 @@ import ReusabilityMethod.ReusableActions;
 public class ExtentReportManager implements ITestListener {
     public ExtentSparkReporter sparkReporter;
     public ExtentReports extent;
-    public ExtentTest test, node;
-    public String testCaseName, testDescription = "IHP Web Application Automation", nodes, authors, category;
+  //  public ExtentTest test, node;
     String repName;
-    ThreadLocal<ExtentTest> extentTest = new ThreadLocal<ExtentTest>(); //Thread safe
+    ExtentTest test = new ThreadLocal<ExtentTest>().get(); //Thread safe
 
     public void onStart(ITestContext testContext) {
 
@@ -78,7 +77,7 @@ public class ExtentReportManager implements ITestListener {
     public void onTestSuccess(ITestResult result) {
 
         test = extent.createTest(result.getTestClass().getName());
-
+       //
         test.assignCategory(result.getMethod().getGroups());
         // to display groups in report
         test.log(Status.PASS, result.getName() + " got successfully executed");
@@ -130,7 +129,7 @@ public class ExtentReportManager implements ITestListener {
 
         //To send email with attachment
         //sendEmail(sender email,sender password(encrypted),recipient email);
-        sendEmail("lgstest50@gmail.com", "Test@123", "balajin04@outlook.com");
+        //sendEmail("lgstest50@gmail.com", "Test@123", "balajin04@outlook.com");
     }
 
 

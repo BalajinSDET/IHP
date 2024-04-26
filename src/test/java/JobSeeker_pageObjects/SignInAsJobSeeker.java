@@ -33,25 +33,18 @@ public class SignInAsJobSeeker extends Selenium_Base {
 
     public void ValidateSignInAsJobSeekerPage() {
         ReusableActions.HighlightingElement(SignInJobSeekerHeader);
-        //SignInJobSeekerHeader.isDisplayed();
     }
 
     public void SetRegisteredEmailId(String email) {
-        //	BaseClass.HighlightingElement(emailfield);
         ReusableActions.clickAndType(emailfield, "lgstester50@gmail.com");
-        //emailfield.sendKeys("lgstester50@gmail.com");
     }
 
     public void SetPassword(String password) {
-        //BaseClass.HighlightingElement(passwordfield);
         ReusableActions.clickAndType(passwordfield, "Test123");
-        //passwordfield.sendKeys("Test123");
     }
 
     public void ClickSignInButton() {
-        //	BaseClass.HighlightingElement(signinbutton);
         ReusableActions.click(signinbutton);
-        //	signinbutton.click();
     }
 
 }

@@ -1,11 +1,15 @@
 package testBase;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -28,8 +32,6 @@ public class Selenium_Base {
     //loadConfig method is to load the configuration
     @BeforeSuite(groups = {"Smoke", "Sanity", "Regression"})
     public void loadConfig() {
-
-
         try {
             prop = new Properties();
             FileInputStream ip = new FileInputStream(
@@ -91,5 +93,13 @@ public class Selenium_Base {
         getDriver().quit();
     }
 
+    public String getScreenshot(String testCaseName) throws IOException
+    {
+        TakesScreenshot ts = (TakesScreenshot)getDriver();
+        File source = ts.getScreenshotAs(OutputType.FILE);
+        File file = new File(System.getProperty("user.dir") + "//reports//" + testCaseName + ".png");
+        FileUtils.copyFile(source, file);
+        return System.getProperty("user.dir") + "//reports//" + testCaseName + ".png";
+    }
 
 }
