@@ -1,0 +1,1 @@
+{"uuid":"9f3cd211-3c5f-458d-9c9d-07f8a22bf477","name":"testBase.Selenium_Base.setup","children":["a8158058-2175-4315-b492-1ffeda3b205a"],"description":"","befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1714205193581,"stop":1714205209756}],"afters":[],"start":1714205193581,"stop":1714205209757}

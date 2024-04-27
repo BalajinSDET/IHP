@@ -36,11 +36,11 @@ public class SignInAsJobSeeker extends Selenium_Base {
     }
 
     public void SetRegisteredEmailId(String email) {
-        ReusableActions.clickAndType(emailfield, "lgstester50@gmail.com");
+        ReusableActions.clickAndType(emailfield,email );
     }
 
     public void SetPassword(String password) {
-        ReusableActions.clickAndType(passwordfield, "Test123");
+        ReusableActions.clickAndType(passwordfield, password);
     }
 
     public void ClickSignInButton() {

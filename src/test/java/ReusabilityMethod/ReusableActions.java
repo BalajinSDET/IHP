@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.JavascriptExecutor;
@@ -59,7 +60,7 @@ public class ReusableActions extends Selenium_Base {
             HighlightingElement(ele);
             text = ele.getText();
             ele.click();
-            System.out.println("The Element " + text + " clicked successfully ==> Test Pass");
+        //    System.out.println("The Element " + text + " clicked successfully ==> Test Pass");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("The Element " + text + " could not be clicked ==> Test fail");
@@ -75,7 +76,7 @@ public class ReusableActions extends Selenium_Base {
             text = ele.getText();
             HighlightingElement(ele);
             action.moveToElement(ele).click().build().perform();
-            System.out.println("The Element " + text + " clicked" + "Passed");
+         //   System.out.println("The Element " + text + " clicked" + "Passed");
         } catch (StaleElementReferenceException e) {
             throw new RuntimeException();
 
@@ -161,7 +162,7 @@ public class ReusableActions extends Selenium_Base {
             ele.click();
             Thread.sleep(1000);
             ele.sendKeys(data);
-            System.out.println("The Element " + text + " entered success Test Pass");
+         //   System.out.println("The Element " + text + " entered success Test Pass");
         } catch (StaleElementReferenceException e) {
             throw new RuntimeException();
         } catch (Exception e) {
@@ -314,4 +315,23 @@ public class ReusableActions extends Selenium_Base {
 
     }
 
+    public String screenShot(WebDriver driver, String filename) {
+        String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+        TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
+        File source = takesScreenshot.getScreenshotAs(OutputType.FILE);
+        String destination = System.getProperty("user.dir") + "\\ScreenShots\\" + filename + "_" + dateName + ".png";
+
+        try {
+            FileUtils.copyFile(source, new File(destination));
+        } catch (Exception e) {
+            e.getMessage();
+        }
+      /*  // This new path for jenkins
+        String newImageString = "http://localhost:8080/job/IHP_Demo_Test/ws/reports/" + filename + "_"
+                + dateName + ".png";
+        return newImageString;*/
+
+
+        return dateName;
+    }
 }
