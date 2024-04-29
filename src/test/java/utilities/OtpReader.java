@@ -28,7 +28,7 @@ public class OtpReader {
     // email is your email address where email with OTP is sent
     private final static String email = "lgstester50@gmail.com";
     // password is app password created for the email address above
-    private final static String password = "yypbzstepwjjcrku";
+    private final static String password = "yypbzstepwjjcrku"; // hrhn qtiq bwxy rftv //yypbzstepwjjcrku
 
     public static String getOtp() {
         try {
