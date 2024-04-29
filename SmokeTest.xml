@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Smoke Suite " parallel="tests" verbose="2">
+<suite name="Smoke Suite " verbose="2" parallel="tests">
     <listeners>
         <listener class-name="utilities.ExtentReportManager"/>
     </listeners>
 
-    <test thread-count="5" name="Smoke Test" parallel="methods">
+    <test thread-count="5" name="Smoke Test" >
         <parameter name="browser" value="chrome"/>
         <groups>
             <run>
@@ -13,8 +13,10 @@
             </run>
         </groups>
         <classes>
-            <class name="TestCases.TC_001_SignInAs_JobSeeker"/>
+           <!-- <class name="TestCases.TC_001_SignInAs_JobSeeker"/>-->
             <class name="TestCases.TC_002_Index_Page_Test"/>
+           <!-- <class name="TestCases.TC_003_SignInAs_JobProvider"/>
+            <class name="TestCases.TC_004_PostAJob"></class>-->
         </classes>
     </test> <!-- Smoke Test -->
 </suite> <!-- Smoke Suite  -->

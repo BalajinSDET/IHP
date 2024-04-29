@@ -86,6 +86,9 @@ public class index_page extends Selenium_Base {
     @FindBy(xpath = "//h4[contains(text(),'LOGIN AS JOBSEEKER')]")
     protected WebElement loginAsJobseeker;
 
+    @FindBy(xpath = "//h4[contains(text(),'LOGIN AS JOB PROVIDER')]")
+    public WebElement loginAsJobProvider;
+
     public index_page() {
         PageFactory.initElements(getDriver(), this);
     }
@@ -117,5 +120,9 @@ public class index_page extends Selenium_Base {
     public String GlobalSearchResultPage() {
         String act_page = getDriver().getTitle();
         return act_page;
+    }
+
+    public void ClickLoginAsJobProvider() {
+        ReusableActions.click(loginAsJobProvider);
     }
 }

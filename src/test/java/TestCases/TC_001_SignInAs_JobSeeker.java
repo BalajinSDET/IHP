@@ -35,7 +35,7 @@ public class TC_001_SignInAs_JobSeeker extends Selenium_Base {
             OTP.ClickVerifiedOtpSubmitBtn();
             Assert.assertTrue(true,"Test Cases pass");
         } else if (exp_result.equalsIgnoreCase("invalid")) {
-            if (BaseClass.getDriver().switchTo().activeElement() != null) {
+            if (getDriver().switchTo().activeElement() != null) {
                 ReusableActions.acceptAlert();
                 System.out.println("****** Test case passed ******");
             }

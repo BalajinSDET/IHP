@@ -179,6 +179,7 @@ public class ExtentReportManager implements ITestListener {
 
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("Failed to send email: " + e.getMessage());
         }
 
     }
