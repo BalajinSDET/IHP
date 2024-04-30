@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
 
+import com.aventstack.extentreports.ExtentTest;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -22,8 +23,11 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import utilities.ExtentReportManager;
 
-public class Selenium_Base {
+import static utilities.ExtentManager.test;
+
+public class Selenium_Base extends ExtentReportManager {
     public static Properties prop;
 
     // Declare ThreadLocal Driver
@@ -86,6 +90,7 @@ public class Selenium_Base {
     @BeforeMethod(groups = {"Smoke", "Sanity", "Regression"})
     public void setup(String browser) {
         launchApp(browser);
+      //  node = test.createNode(testCaseName);
     }
 
     @AfterMethod(groups = {"Smoke", "Sanity", "Regression"})
@@ -93,9 +98,8 @@ public class Selenium_Base {
         getDriver().quit();
     }
 
-    public String getScreenshot(String testCaseName) throws IOException
-    {
-        TakesScreenshot ts = (TakesScreenshot)getDriver();
+    public String getScreenshot(String testCaseName) throws IOException {
+        TakesScreenshot ts = (TakesScreenshot) getDriver();
         File source = ts.getScreenshotAs(OutputType.FILE);
         File file = new File(System.getProperty("user.dir") + "//reports//" + testCaseName + ".png");
         FileUtils.copyFile(source, file);

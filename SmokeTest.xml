@@ -14,9 +14,9 @@
         </groups>
         <classes>
            <!-- <class name="TestCases.TC_001_SignInAs_JobSeeker"/>-->
-            <class name="TestCases.TC_002_Index_Page_Test"/>
-           <!-- <class name="TestCases.TC_003_SignInAs_JobProvider"/>
-            <class name="TestCases.TC_004_PostAJob"></class>-->
+           <!-- <class name="TestCases.TC_002_Index_Page_Test"/>-->
+           <class name="TestCases.TC_003_SignInAs_JobProvider"/>
+         <!--   <class name="TestCases.TC_004_PostAJob"></class>-->
         </classes>
     </test> <!-- Smoke Test -->
 </suite> <!-- Smoke Suite  -->

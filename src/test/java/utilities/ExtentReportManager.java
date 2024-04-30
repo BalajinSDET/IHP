@@ -40,8 +40,10 @@ public class ExtentReportManager implements ITestListener {
     public ExtentSparkReporter sparkReporter;
     public ExtentReports extent;
     String repName;
-    ExtentTest test = new ThreadLocal<ExtentTest>().get(); //Thread safe
+    static public ExtentTest test = new ThreadLocal<ExtentTest>().get(); //Thread safe
 
+    // static public ExtentTest  node;
+    //  public static String testCaseName,testDescription;
     public void onStart(ITestContext testContext) {
 
         String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());// time stamp
@@ -74,6 +76,7 @@ public class ExtentReportManager implements ITestListener {
 
 
     public void onTestSuccess(ITestResult result) {
+        // test = extent.createTest(testCaseName, testDescription);
         test = extent.createTest(result.getTestClass().getName());
         test.assignCategory(result.getMethod().getGroups());
         // to display groups in report
@@ -119,7 +122,7 @@ public class ExtentReportManager implements ITestListener {
 
         //To send email with attachment
         //sendEmail(sender email,sender password(encrypted),recipient email);
-        sendEmail("lgstest50@gmail.com", "hrhn qtiq bwxy rftv", "lgstest50@gmail.com");
+        //  sendEmail("lgstest50@gmail.com", "hrhn qtiq bwxy rftv", "lgstest50@gmail.com");
     }
 //yypbzstepwjjcrku - old gmail app key
 

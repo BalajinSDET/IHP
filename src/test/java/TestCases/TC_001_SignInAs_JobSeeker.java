@@ -17,7 +17,7 @@ public class TC_001_SignInAs_JobSeeker extends Selenium_Base {
     @Test(groups = {"Smoke"}, priority = 1, alwaysRun = true, dataProvider = "LoginData", dataProviderClass = DataProviders.class)
     //,timeOut=3000
     public void Validate_SignINAsJobSeeker(String email, String password, String exp_result) {
-        index_page ip = new index_page();
+        index_page ip = new index_page(); //node
         ip.ClickLoginAsJobSeeker();
 
         SignInAsJobSeeker js = new SignInAsJobSeeker();

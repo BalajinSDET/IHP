@@ -34,7 +34,7 @@ public class TC_003_SignInAs_JobProvider extends Selenium_Base {
     @Test(groups = {"Smoke"}, priority = 1, alwaysRun = true)
     //dataProvider = "LoginData", dataProviderClass = DataProviders.class
     public void Validate_SignInAsJobProvider() { //String email, String password, String exp_result
-        index_page ip = new index_page();
+        index_page ip = new index_page(); //node
         ip.ClickLoginAsJobProvider();
 
         SignInAsJobProvider jp = new SignInAsJobProvider();

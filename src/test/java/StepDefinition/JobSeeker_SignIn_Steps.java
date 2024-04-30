@@ -8,9 +8,11 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import static ReusabilityMethod.ReusableActions.node;
+
 public class JobSeeker_SignIn_Steps {
 
-    index_page ip = new index_page();
+    index_page ip = new index_page(); //node
     SignInAsJobSeeker sijs = new SignInAsJobSeeker();
     OTP_VerificationPage otp= new OTP_VerificationPage();
     @Given("User is enter the Ihp website URL")

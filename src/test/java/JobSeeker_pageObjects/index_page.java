@@ -1,5 +1,6 @@
 package JobSeeker_pageObjects;
 
+import com.aventstack.extentreports.ExtentTest;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -89,7 +90,8 @@ public class index_page extends Selenium_Base {
     @FindBy(xpath = "//h4[contains(text(),'LOGIN AS JOB PROVIDER')]")
     public WebElement loginAsJobProvider;
 
-    public index_page() {
+    public index_page() { //ExtentTest node
+      //  this.node = node;
         PageFactory.initElements(getDriver(), this);
     }
 

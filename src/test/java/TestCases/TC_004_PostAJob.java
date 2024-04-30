@@ -13,7 +13,7 @@ public class TC_004_PostAJob extends Selenium_Base {
 
     @Test(groups = {"Smoke"}, priority = 1, alwaysRun = true)
     public void Validate_SignInAsJobProvider() { //String email, String password, String exp_result
-        index_page ip = new index_page();
+        index_page ip = new index_page(); //node
         ip.ClickLoginAsJobProvider();
 
         SignInAsJobProvider jp = new SignInAsJobProvider();
