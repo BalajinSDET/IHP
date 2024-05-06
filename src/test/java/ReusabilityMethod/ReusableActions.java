@@ -24,6 +24,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.WheelInput;
+import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
@@ -31,6 +32,9 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import testBase.Selenium_Base;
+import utilities.ColorUtils;
+
+import static utilities.ColorUtils.stringToColor;
 
 public class ReusableActions extends Selenium_Base {
     public static ExtentTest node;
@@ -57,12 +61,12 @@ public class ReusableActions extends Selenium_Base {
             HighlightingElement(ele);
             text = ele.getText();
             ele.click();
-          //  reportStep("The Element is " + text + " clicked successfully", "pass");
+            //  reportStep("The Element is " + text + " clicked successfully", "pass");
             //    System.out.println("The Element " + text + " clicked successfully ==> Test Pass");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("The Element " + text + " could not be clicked ==> Test fail");
-        //    reportStep("The Element is" + text + " could not be clicked", "fail");
+            //    reportStep("The Element is" + text + " could not be clicked", "fail");
         }
     }
 
@@ -161,7 +165,7 @@ public class ReusableActions extends Selenium_Base {
             ele.click();
             Thread.sleep(1000);
             ele.sendKeys(data);
-         //   reportStep("The Element is " + text + " entered successfully", "pass");
+            //   reportStep("The Element is " + text + " entered successfully", "pass");
             //   System.out.println("The Element " + text + " entered success Test Pass");
         } catch (StaleElementReferenceException e) {
             throw new RuntimeException();
@@ -675,4 +679,15 @@ public class ReusableActions extends Selenium_Base {
     public static void reportStep(String desc, String status) {
         reportStep(desc, status, true);
     }
+
+    public static void ValidateElementColor(WebElement ele) {
+        String colorele = ele.getCssValue("color");
+        String hex_code = Color.fromString(colorele).asHex();
+        System.out.println("Displayed heading color is : " + colorele);
+        System.out.println("Displayed heading hex color code is : " + hex_code);
+        java.awt.Color c = stringToColor(hex_code);
+        System.out.println("Displayed heading exact color name is : " + ColorUtils.getColorNameFromColor(c));
+    }
+
+
 }

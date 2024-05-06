@@ -17,7 +17,7 @@ Feature: This is the Job Seeker sign in scenario
 
     Examples:
       | email                 | password |
-      | lgstester50@gmail.com | Test123 |
+      | lgstester50@gmail.com | Test123  |
 
   @VerifyKeepMeSignInToThisDevice
   Scenario Outline: Verify that sign in as Job Seeker with keep me as sign to this device functionality
@@ -38,7 +38,7 @@ Feature: This is the Job Seeker sign in scenario
     Then User navigates to the dashboard page of the Ihp project successfully
 
     Examples:
-      | email                 | password |
-      | lgstester50@gmail.com | Test123  |
-      | lgstester50@gmail.com | Test123  |
+    #  | email                 | password |
+      | lgstester50@gmail.com | Test123 |
+      | lgstester50@gmail.com | Test123 |
 

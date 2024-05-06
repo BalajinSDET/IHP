@@ -9,6 +9,9 @@ import java.time.Duration;
 import java.util.Date;
 import java.util.Properties;
 
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Platform;
@@ -26,17 +29,71 @@ import org.testng.annotations.Parameters;
 import org.apache.logging.log4j.LogManager;//log4j
 import org.apache.logging.log4j.Logger;   //log4j
 
+import static java.lang.System.getProperties;
+
 
 public class BaseClass extends Selenium_Base {//Reporter
 
     static public WebDriver driver;
     //public WebDriver driver;// parallel testing
     public Logger logger;
-    public Properties p;
+     static Properties p;
 
+    public static WebDriver initilizeBrowser() throws IOException {
+        if (getProperties().getProperty("Execution_env").equalsIgnoreCase("remote")) {
+            DesiredCapabilities capabilities = new DesiredCapabilities();
 
-    @BeforeClass(groups = {"sanity", "regression", "master"})
-    @Parameters({"os", "browser"})
+            //To get os type
+            if (getProperties().getProperty("os").equalsIgnoreCase("windows")) {
+                capabilities.setPlatform(Platform.WIN11);
+            } else if (getProperties().getProperty("os").equalsIgnoreCase("mac")) {
+                capabilities.setPlatform(Platform.MAC);
+            } else {
+                System.out.println("No matching OS..");
+            }
+            //browser
+            switch (getProperties().getProperty("browser").toLowerCase()) {
+                case "chrome":
+                    capabilities.setBrowserName("chrome");
+                    break;
+                case "edge":
+                    capabilities.setBrowserName("MicrosoftEdge");
+                    break;
+                case "firefox":
+                    capabilities.setBrowserName("FireFox");
+                    break;
+                default:
+                    System.out.println("No matching browser");
+            }
+            driver = new RemoteWebDriver(new URL(""), capabilities);
+        } else if (getProperties().getProperty("Execution_env").equalsIgnoreCase("local")) {
+            switch (getProperties().getProperty("browser").toLowerCase()) {
+                case "chrome":
+                    driver = new ChromeDriver();
+                    break;
+                case "edge":
+                    driver = new EdgeDriver();
+                    break;
+                case "firefox":
+                    driver=new FirefoxDriver();
+                default:
+                    System.out.println("No matching browser");
+                    driver = null;
+            }
+        }
+        return driver;
+    }
+
+    public static WebDriver getDriver() {
+        return driver;
+    }
+    public static Properties getProperties() throws IOException {
+        FileReader file = new FileReader(System.getProperty("user.dir") + "\\src\\test\\resources\\Config.properties");
+        p = new Properties();
+        p.load(file);
+        return p;
+    }
+
     public void setup(String os, String br) throws IOException {
         //loading properties file
         FileReader file = new FileReader(".//src//test//resources//config.properties");
@@ -109,7 +166,7 @@ public class BaseClass extends Selenium_Base {//Reporter
         driver.manage().window().maximize();
     }
 
-    @AfterClass(groups = {"sanity", "regression", "master"})
+
     public void tearDown() {
         driver.quit();
     }
@@ -148,17 +205,19 @@ public class BaseClass extends Selenium_Base {//Reporter
 
     }
 
-    /*
-     * public static void HighlightingElement(WebElement ele) { explicitWait(ele);
-     *
-     * JavascriptExecutor JS = (JavascriptExecutor) driver;
-     * JS.executeScript("arguments[0].style.border='3px solid blue'", ele); }
-     *
-     * public static void explicitWait(WebElement element) { WebDriverWait wait =
-     * new WebDriverWait(driver, Duration.ofSeconds(30));
-     * wait.until(ExpectedConditions.visibilityOf(element)); }
-     *
-     */
+   // @Before
+    public void setup() throws IOException {
+        driver = BaseClass.initilizeBrowser();
+        p = BaseClass.getProperties();
+        driver.get(p.getProperty("appURL"));
+        driver.manage().deleteAllCookies();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
+    }
 
-
+   // @After
+    public void tearDown(Scenario scenario) {
+        driver.quit();
+    }
 }

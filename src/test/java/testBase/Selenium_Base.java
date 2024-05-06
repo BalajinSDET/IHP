@@ -8,6 +8,8 @@ import java.time.Duration;
 import java.util.Properties;
 
 import com.aventstack.extentreports.ExtentTest;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -16,11 +18,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import utilities.ExtentReportManager;
@@ -87,15 +85,24 @@ public class Selenium_Base extends ExtentReportManager {
     }
 
     @Parameters("browser")
-    @BeforeMethod(groups = {"Smoke", "Sanity", "Regression"})
-    public void setup(String browser) {
-        launchApp(browser);
-      //  node = test.createNode(testCaseName);
+  @BeforeMethod(groups = {"Smoke", "Sanity", "Regression"})
+  //  @Before
+    public void setup(@Optional ("chrome") String browser) {
+        if (driver != null) {
+            launchApp(browser);
+        }
+
+       // launchApp(browser);
+
     }
 
     @AfterMethod(groups = {"Smoke", "Sanity", "Regression"})
+   // @After
     public void tearDown() {
-        getDriver().quit();
+        if (driver != null) {
+            getDriver().quit();
+        }
+
     }
 
     public String getScreenshot(String testCaseName) throws IOException {

@@ -11,8 +11,8 @@ import testBase.Selenium_Base;
 import java.util.List;
 
 public class Post_A_Job_Page extends Selenium_Base {
-    public Post_A_Job_Page(){
-        PageFactory.initElements(getDriver(),this);
+    public Post_A_Job_Page() {
+        PageFactory.initElements(getDriver(), this);
     }
 
     @FindBy(xpath = "//input[@placeholder=\"Job Id \"]")
@@ -38,6 +38,12 @@ public class Post_A_Job_Page extends Selenium_Base {
 
     @FindBy(xpath = "//select[@placeholder=\"job_category*\"]")
     WebElement jobCategoryDropDown;
+
+    @FindBy(xpath = "//span[contains(text(),'Required')]")
+    List<WebElement> ValidationMessage;
+
+    @FindBy(xpath = "//span[contains(text(),'Only alphanumeric characters are allowed')]")
+    WebElement jobIdValidationMessage;
 
     @FindBy(xpath = "//div[contains(text(),'Posted Jobs')]")
     WebElement postedJobsCard;
@@ -123,32 +129,36 @@ public class Post_A_Job_Page extends Selenium_Base {
         return true;
     }
 
-    public void enterJobId()  { //String Job_Id
-        ReusableActions.clickAndType(jobIdPlaceholder, "ST_001_ATE");
+    public String enterJobId(String Job_Id) { //String Job_Id
+       String Val_Msg="";
+        ReusableActions.clickAndType(jobIdPlaceholder, Job_Id);//"ST_001_ATE"
+        if(jobIdValidationMessage.isDisplayed()){
+        Val_Msg= jobIdValidationMessage.getText();
+        }return Val_Msg;
     }
 
-    public void enterjobTitle() { //String Job_Title
-        ReusableActions.clickAndType(jobTitleTextBox, "Software Test Engineer");
+    public void enterjobTitle(String Job_Title) { //String Job_Title
+        ReusableActions.clickAndType(jobTitleTextBox,Job_Title ); //"Software Test Engineer"
     }
 
-    public void enterpreferedSkills() { //String Preferred_Skills
-        ReusableActions.clickAndType(prefferedSkillsTxtBox, "Automation, Selenium with Core Java, Cucumber BDD");
+    public void enterpreferedSkills(String Preferred_Skills) { //String Preferred_Skills
+        ReusableActions.clickAndType(prefferedSkillsTxtBox,Preferred_Skills ); //"Automation, Selenium with Core Java, Cucumber BDD"
     }
 
-    public void enterjobKeywords() { //String Trending_Keyword
-        ReusableActions.clickAndType(jobKeywordsTxtBox, "Test Engineer, Automation Tester, SDET");
+    public void enterjobKeywords(String Trending_Keyword) { //String Trending_Keyword
+        ReusableActions.clickAndType(jobKeywordsTxtBox,Trending_Keyword ); //"Test Engineer, Automation Tester, SDET"
     }
 
-    public void enterAddress() { //String Full_Address
-        ReusableActions.clickAndType(fullAddressTxtBox, "Tidel park coimbatore");
+    public void enterAddress(String Full_Address) { //String Full_Address
+        ReusableActions.clickAndType(fullAddressTxtBox,Full_Address ); //"Tidel park coimbatore"
     }
 
-    public void enterResponsibilities() { //String Responsibilities
-        ReusableActions.clickAndType(responsibilitiesTextBox, "To deliver the Quality software to the client");
+    public void enterResponsibilities(String Responsibilities) { //String Responsibilities
+        ReusableActions.clickAndType(responsibilitiesTextBox,Responsibilities ); //"To deliver the Quality software to the client"
     }
 
-    public void enterAboutTheJob() { //String About
-        ReusableActions.clickAndType(aboutThisJobTextBox, "Software Testing which is part of software development process");
+    public void enterAboutTheJob(String About) { //String About
+        ReusableActions.clickAndType(aboutThisJobTextBox, About); //"Software Testing which is part of software development process"
     }
 
     public void clickOnWorkinghourDropDown() { //String Working_Hours
@@ -160,20 +170,20 @@ public class Post_A_Job_Page extends Selenium_Base {
         ReusableActions.DropDown(jobTypeDropDown, "Full Time", "VisibleText");
     }
 
-    public void clickOnExperienceDropDown() { //String Experience
-        ReusableActions.DropDown(experienceDropDown, "3-5 years Experience", "VisibleText");
+    public void clickOnExperienceDropDown(String Experience) { //String Experience
+        ReusableActions.DropDown(experienceDropDown,Experience , "VisibleText"); //"3-5 years Experience"
     }
 
     public void clickOnAnnualSalaryDropDown() { //String Annual_Salary
         ReusableActions.DropDown(salaryDropDown, "5L-10L", "VisibleText");
     }
 
-    public void clickOnWorkSheduleDropDown() { //String Work_Schedule
-        ReusableActions.DropDown(workShceduleDropDown,"Morning/Day/Night Shift", "VisibleText");
+    public void clickOnWorkSheduleDropDown(String Work_Schedule) { //String Work_Schedule
+        ReusableActions.DropDown(workShceduleDropDown, Work_Schedule, "VisibleText"); //"Morning/Day/Night Shift"
     }
 
-    public void clickOnmMinimumQualificationDropDown() { //String Minimum_Qualification
-        ReusableActions.DropDown(minimumQualificationDropDown,"B.E/B.Tech", "VisibleText");
+    public void clickOnmMinimumQualificationDropDown(String Minimum_Qualification) { //String Minimum_Qualification
+        ReusableActions.DropDown(minimumQualificationDropDown, Minimum_Qualification, "VisibleText");//"B.E/B.Tech"
     }
 
     public void educationDropDown() { //String Education
@@ -203,7 +213,7 @@ public class Post_A_Job_Page extends Selenium_Base {
 
     public boolean jobPostedSuccessfullyPopupVisible() {
         ReusableActions.DelayWithGivenTime(3000);
-       getDriver().switchTo().activeElement();
+        getDriver().switchTo().activeElement();
         ReusableActions.HighlightingElement(jobPostedSuccessfullytxt);
         jobPostedSuccessfullytxt.isDisplayed();
 
@@ -212,8 +222,8 @@ public class Post_A_Job_Page extends Selenium_Base {
         return true;
     }
 
-    public void clickOnJobCategoryDropDown() { //String Job_Category
-        ReusableActions.DropDown(jobCategoryDropDown, "Information Technology", "VisibleText");
+    public void clickOnJobCategoryDropDown(String Job_Category) { //String Job_Category
+        ReusableActions.DropDown(jobCategoryDropDown,Job_Category , "VisibleText");//Information Technology"
     }
 
     public void clickOnPostedJobCard() {
@@ -241,27 +251,58 @@ public class Post_A_Job_Page extends Selenium_Base {
     }
 
     public void VerifyValidationMessage() {
-        for (int i=0; i < ListOfValidationText.size(); i++) {
-            for( int j=0;j<ListOfLabels.size();j++){
+        for (int i = 0; i < ListOfValidationText.size(); i++) {
+            for (int j = 0; j < ListOfLabels.size(); j++) {
                 ReusableActions.HighlightingElement(ListOfValidationText.get(i));
                 ReusableActions.HighlightingElement(ListOfLabels.get(j));
-                System.out.println("Displayed validation message of "+ListOfLabels.get(j).getText() +" field :" + ListOfValidationText.get(i).getText());
+                System.out.println("Displayed validation message of " + ListOfLabels.get(j).getText() + " field :" + ListOfValidationText.get(i).getText());
                 break;
             }
         }
     }
 
-    public void VerifyPlaceHolders(){
-        for(int i=0;i<ListOfPlaceHolders.size();i++){
-            for(int j=0;j<ListOfLabels.size();j++){
-                String Placeholders =  ListOfPlaceHolders.get(i).getAttribute("placeholder");
+    public void VerifyPlaceHolders() {
+        for (int i = 0; i < ListOfPlaceHolders.size(); i++) {
+            for (int j = 0; j < ListOfLabels.size(); j++) {
+                String Placeholders = ListOfPlaceHolders.get(i).getAttribute("placeholder");
                 String LabelName = ListOfLabels.get(j).getText();
-                System.out.println("Placeholder present in the fields are : "+Placeholders);
+                System.out.println("Placeholder present in the fields are : " + Placeholders);
                 //  System.out.println(" "+LabelName + ":" + Placeholders);
                 break;
             }
         }
     }
 
+    public String ValidationMessage(String text) {
+        String validation_message = "";
+        switch (text) {
+            case "job id":
+                jobIdPlaceholder.sendKeys("TFYTFFHKGLGLJJK_jkNJK_kjj");
+                jobCategoryDropDown.click();
+                validation_message = jobIdValidationMessage.getText();
+                //  ReusableActions.HighlightingElement(validation_message);
+                System.out.println(validation_message);
+                break;
+            case "responsibilities":
+                responsibilitiesTextBox.sendKeys("Test Web application");
+                jobCategoryDropDown.click();
+                validation_message = jobIdValidationMessage.getText();
+                //  ReusableActions.HighlightingElement(validation_message);
+                System.out.println(validation_message);
+                break;
+        }
+        return validation_message;
+    }
+
+    public String Verify_PostAJobPage_ValidationMessage() {
+        String validation = "";
+
+        for(int i=0;i<ValidationMessage.size();i++){
+            validation=ValidationMessage.get(i).getText();
+            ReusableActions.HighlightingElement(ValidationMessage.get(i));
+            System.out.println(validation);
+        }
+        return validation;
+    }
 
 }

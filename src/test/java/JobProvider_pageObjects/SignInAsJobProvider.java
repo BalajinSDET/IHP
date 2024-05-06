@@ -30,13 +30,13 @@ public class SignInAsJobProvider extends Selenium_Base {
         return true;
     }
 
-    public SignInAsJobProvider EnterRegisteredEmailField(){
-        ReusableActions.clickAndType(emailfield,"lgstester50@gmail.com");
+    public SignInAsJobProvider EnterRegisteredEmailField(String email){
+        ReusableActions.clickAndType(emailfield,email); //"lgstester50@gmail.com"
         return this;
     }
 
-    public SignInAsJobProvider EnterPassword(){
-        ReusableActions.clickAndType(passwordfield,"Test123");
+    public SignInAsJobProvider EnterPassword(String password){
+        ReusableActions.clickAndType(passwordfield,password); //"Test123"
         return this;
     }
 

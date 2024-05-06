@@ -15,7 +15,7 @@ public class DataProviders {
 
     @DataProvider(name = "LoginData")
     public Object[][] getData() throws IOException {
-        String path = "C:\\Automation Testing Documents\\IHP-master\\testData\\TC_001.xlsx";//taking xl file from testData
+        String path = "C:\\Automation Testing Documents\\IHP-master\\testData\\TC_003_JP_PostAJob.xlsx";//taking xl file from testData
 
         ExcelUtility xlutil = new ExcelUtility(path);//creating an object for XLUtility
 
@@ -34,7 +34,6 @@ public class DataProviders {
         return logindata;//returning two dimension array
 
     }
-
 
     public static Object[][] readExcelData(String excelfileName) throws IOException{
         XSSFWorkbook wbook =

@@ -90,8 +90,7 @@ public class index_page extends Selenium_Base {
     @FindBy(xpath = "//h4[contains(text(),'LOGIN AS JOB PROVIDER')]")
     public WebElement loginAsJobProvider;
 
-    public index_page() { //ExtentTest node
-      //  this.node = node;
+    public index_page() {
         PageFactory.initElements(getDriver(), this);
     }
 

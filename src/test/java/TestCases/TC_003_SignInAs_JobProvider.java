@@ -33,14 +33,14 @@ public class TC_003_SignInAs_JobProvider extends Selenium_Base {
 
     @Test(groups = {"Smoke"}, priority = 1, alwaysRun = true)
     //dataProvider = "LoginData", dataProviderClass = DataProviders.class
-    public void Validate_SignInAsJobProvider() { //String email, String password, String exp_result
+    public void Validate_SignInAsJobProvider(String email, String password) { //String email, String password, String exp_result
         index_page ip = new index_page(); //node
         ip.ClickLoginAsJobProvider();
 
         SignInAsJobProvider jp = new SignInAsJobProvider();
         jp.VerifySignInJobProviderPage();
-        jp.EnterRegisteredEmailField(); //email
-        jp.EnterPassword(); //password
+        jp.EnterRegisteredEmailField(email); //email
+        jp.EnterPassword(password); //password
         jp.ClickSignInButton();
 
         OTP_VerificationPage OTP = new OTP_VerificationPage();

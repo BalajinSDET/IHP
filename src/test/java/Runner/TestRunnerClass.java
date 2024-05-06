@@ -5,8 +5,9 @@ import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.DataProvider;
 
 
-@CucumberOptions(features = {"src/test/resources/Features/Sign in as Job Seeker.feature"}, //Verify End to End Test Flow Hiring Job Seeker.feature
-        glue = "StepDefinition",
+@CucumberOptions(
+        features = {"src/test/resources/Features/Sign in as Job Seeker.feature"},
+        glue = {"StepDefinition"},
         dryRun = false,
         monochrome = true,
         publish = true,
