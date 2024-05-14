@@ -14,8 +14,9 @@ public class DataProviders {
     //DataProvider 1
 
     @DataProvider(name = "LoginData")
-    public Object[][] getData() throws IOException {
-        String path = "C:\\Automation Testing Documents\\IHP-master\\testData\\TC_003_JP_PostAJob.xlsx";//taking xl file from testData
+    public static Object[][] getData() throws IOException {
+        String path = "C:\\Users\\LGS\\IdeaProjects\\IHP\\testData\\TC_003_JP_PostAJob.xlsx";//taking xl file from testData //TC_003_JP_PostAJob //TC_001_SignInAsJobSeeker
+
 
         ExcelUtility xlutil = new ExcelUtility(path);//creating an object for XLUtility
 
@@ -37,7 +38,7 @@ public class DataProviders {
 
     public static Object[][] readExcelData(String excelfileName) throws IOException{
         XSSFWorkbook wbook =
-                new XSSFWorkbook("./testData/"+excelfileName+".xlsx");
+                new XSSFWorkbook(".\\testData\\"+excelfileName+".xlsx");
         XSSFSheet sheet = wbook.getSheetAt(0);
         int rowCount = sheet.getLastRowNum();
         int colCount = sheet.getRow(0).getLastCellNum();

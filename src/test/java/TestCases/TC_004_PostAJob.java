@@ -27,7 +27,8 @@ public class TC_004_PostAJob extends Selenium_Base {
         return DataProviders.readExcelData(dataSheetName);
     }
 
-    @Test(dataProvider = "LoginData", dataProviderClass = DataProviders.class, groups = {"Smoke"}, priority = 1)//alwaysRun = true, enabled = true
+    @Test(dataProvider = "fetch_Excel_Data", groups = {"Smoke"}, priority = 1)
+//alwaysRun = true, enabled = true //dataProvider = "LoginData", dataProviderClass = DataProviders.class
     public void Validate_SignInAsJobProvider_PostAJob(String email, String password, String Job_Id, String Job_Category, String Responsibilities, String Job_Title, String Experience, String Work_Schedule,
                                                       String Minimum_Qualification, String Full_Address, String Preferred_Skills, String Trending_Keyword, String About, String exp_result) {
         index_page ip = new index_page();
