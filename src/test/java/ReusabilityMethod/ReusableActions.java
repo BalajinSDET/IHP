@@ -689,8 +689,129 @@ public class ReusableActions extends Selenium_Base {
         System.out.println("Displayed heading exact color name is : " + ColorUtils.getColorNameFromColor(c));
     }
 
+    public void select_items(int[] data) {
+        //Apple Add_to_cart_Buttons - list of add to cart buttons
+        for (int i = 0; i < data[0]; i++) {
+            //      Add_to_cart_Buttons.get(0).click();
+        }
+        // In stepdef -
+        // Map<String, String> data = dataTable.asMap(String.class, String.class);
+
+        //  qty=new int[]{Integer.parseInt(data.get("Apple"))}
+        //    add_items.select_items(qty);
+
+    }
+
+    public void Verify_the_Qty(int Expected_data[]) {
+     /*   String Apple_qty =Qty.get(0).getText().replace("Qty :", "").trim();
+        String Banana_qty =Qty.get(1).getText().replace("Qty :", "").trim();
+        String Orange_qty =Qty.get(2).getText().replace("Qty :", "").trim();
+        String Brinjal_qty =Qty.get(3).getText().replace("Qty :", "").trim();
+        String Potato_qty =Qty.get(4).getText().replace("Qty :", "").trim();
+
+        int Actual_UI_data[] = new int[]{
+                Integer.parseInt(Apple_qty),
+                Integer.parseInt(Banana_qty),
+                Integer.parseInt(Orange_qty),
+                Integer.parseInt(Brinjal_qty),
+                Integer.parseInt(Potato_qty)};
+
+        Assert.assertTrue(Arrays.equals(Expected_data, Actual_UI_data));
+        System.out.println("PASS: THE UI Quantity and Expected Quantity matched");
+        sc.write("THE UI Quantity and Expected Quantity matched");*/
+
+        // In step def,  add_items.Verify_the_Qty(qty);
 
 
+    }
+
+    public void Verify_total_cost(int data[]) {
+
+       /* //prices - list of price product elements like Qty=$5
+
+        ArrayList<Integer> prices_arr = new ArrayList<Integer>();
+
+        for (WebElement i : prices) {
+            prices_arr.add(Integer.parseInt(i.getText().replace("$", "").trim()));
+        }
+
+        int Expected_tot_cost = 0;
+        int counter = 0;
+        for (int t : prices_arr) {
+            if (counter != 0) {
+                counter++;
+            }
+            Expected_tot_cost = Expected_tot_cost + (t * data[counter]);
+        }
+        //prices - list of total price product elements like total Qty = $50
+        int Actual_tot_cost_UI = Integer.parseInt(Total_price.getText().replace("$", "").trim());
+
+        Assert.assertTrue(Expected_tot_cost == Actual_tot_cost_UI);
+        System.out.println("PASS: The UI Actual Total cost matched with the Expected Total cost");*/
+
+
+        // In step def,  add_items.Verify_total_cost(qty);
+
+    }
+    public void Verify_total_items(int data []){
+        /*// Total items
+        int expected_tot_items=0;
+
+        for(int i :data ){
+            expected_tot_items +=i;
+        }
+
+        int Actual_UI_tot_items = Integer.parseInt(Total_items.getText());
+
+        Assert.assertTrue(expected_tot_items==Actual_UI_tot_items);
+        System.out.println("PASS: THE UI Total items and Expected Total items Matched");*/
+
+        // In step def,  add_items.Verify_total_items(qty);
+
+    }
+
+  /*  Page objects...
+  // To get the count on how many sections are present....
+  public int getAccountsSectionCount() {
+        return driver.findElements(accountSections).size();
+    }
+
+    public List<String> getAccountsSectionsList() {
+  // To get the text sections are present....
+        List<String> accountsList = new ArrayList<>();
+        List<WebElement> accountsHeaderList = driver.findElements(accountSections);
+
+        for (WebElement e : accountsHeaderList) {
+            String text = e.getText();
+            System.out.println(text);
+            accountsList.add(text);
+        }
+
+        return accountsList;
+
+    }*/
+
+
+
+   /*
+    This is for step def...
+    public void user_gets_accounts_section(DataTable sectionsTable) {
+
+
+        List<String> expAccountSectionsList = sectionsTable.asList();
+
+        System.out.println("Expected accounts section list: " + expAccountSectionsList);
+
+        List<String> actualAccountSectionsList = accountsPage.getAccountsSectionsList();
+        System.out.println("Actual accounts section list: " + actualAccountSectionsList);
+
+        Assert.assertTrue(expAccountSectionsList.containsAll(actualAccountSectionsList));
+
+    }
+
+    public void accounts_section_count_should_be(Integer expectedSectionCount) {
+        Assert.assertTrue(accountsPage.getAccountsSectionCount() == expectedSectionCount);
+    }*/
 
 
 }
